@@ -2,7 +2,7 @@ import Ajv from "ajv";
 
 const ajv = new Ajv();
 
-export const validateSchemaStructre = (inputSchema: object) => {
+export const validateSchemaStructure = (inputSchema: object) => {
   const schema = JSON.parse(JSON.stringify(inputSchema));
   try {
     // validate schema

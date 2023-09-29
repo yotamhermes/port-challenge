@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import EventSchema from "../models/eventSchemaModel"; // Import your Event model or schema definition here
 import { MongoServerError } from "mongodb";
-import { validateSchemaStructre } from "../utils/schemaUtils";
+import { validateSchemaStructure } from "../utils/schemaUtils";
 import { SchemaValidationError } from "../utils/errorTyps";
 
 // Controller function to get a list of all eventSchemas
@@ -20,7 +20,7 @@ export const addNewEventSchema = async (req: Request, res: Response) => {
     const name: string = req.body?.name;
     const structure: object = req.body?.structure;
 
-    const validationResult = validateSchemaStructre(structure);
+    const validationResult = validateSchemaStructure(structure);
 
     if (!validationResult.valid) {
       throw new SchemaValidationError(validationResult.error || "");
@@ -36,16 +36,21 @@ export const addNewEventSchema = async (req: Request, res: Response) => {
 
     res.status(200).json(result?._id);
   } catch (error) {
+    let status = 500;
+    let message = "Internal Server Error";
+
     // Duplicate Key
     if (error instanceof MongoServerError && error.code === 11000) {
-      res
-        .status(409)
-        .json({ error: "Event Schema with the same name already exists" });
-    } else if (error instanceof SchemaValidationError) {
-      res.status(400).json({ error: error.message });
-    } else {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
+      status = 409;
+      message = "Event Schema with the same name already exists";
     }
+
+    // Schema Structure Invalid
+    if (error instanceof SchemaValidationError) {
+      status = 400;
+      message = `Event Schema Structure Not Valid: ${error.message}`;
+    }
+
+    res.status(status).json({ error: message });
   }
 };
