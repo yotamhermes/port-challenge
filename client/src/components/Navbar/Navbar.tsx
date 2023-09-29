@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu, MenuProps } from "antd";
 import { DashboardOutlined, SettingOutlined } from "@ant-design/icons";
 import { Link, useLocation, Outlet } from "react-router-dom";
+import styles from "./styles.module.css";
 
 const items: MenuProps["items"] = [
   {
@@ -9,7 +10,7 @@ const items: MenuProps["items"] = [
     key: "dashboard",
     icon: (
       <Link to="dashboard">
-        <DashboardOutlined />
+        <DashboardOutlined className={styles.icon} />
       </Link>
     ),
   },
@@ -18,7 +19,7 @@ const items: MenuProps["items"] = [
     key: "admin",
     icon: (
       <Link to="admin">
-        <SettingOutlined />
+        <SettingOutlined className={styles.icon} />
       </Link>
     ),
   },
@@ -36,6 +37,7 @@ function NavBar() {
   return (
     <>
       <Menu
+        className={styles.menu}
         onClick={onClick}
         selectedKeys={[current]}
         mode="horizontal"
