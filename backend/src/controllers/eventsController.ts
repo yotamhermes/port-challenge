@@ -6,7 +6,7 @@ import { Document } from "mongoose";
 // Controller function to get a list of all eventSchemas
 export const getEventsOfSchema = async (req: Request, res: Response) => {
   try {
-    const schemaName = req.params.schemaName.toLowerCase();
+    const schemaName = req.params.schemaName;
 
     const schema = await EventSchema.findOne({
       name: schemaName,

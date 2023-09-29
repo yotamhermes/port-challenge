@@ -4,7 +4,6 @@ import db from "../database";
 // Define the EventSchema schema
 export interface IEventSchema extends Document {
   name: string;
-  displayName: string;
   structure: object;
 }
 
@@ -13,10 +12,7 @@ const eventSchemaSchema = new Schema<IEventSchema>({
   name: {
     type: String,
     required: true,
-  },
-  displayName: {
-    type: String,
-    required: true,
+    index: { unique: true },
   },
   structure: {
     type: Object,
