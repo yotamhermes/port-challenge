@@ -1,7 +1,5 @@
-import React from "react";
-
-function App() {
-  return <div>Admin</div>;
+function Admin() {
+  return <div className="app-panel">Admin</div>;
 }
 
-export default App;
+export default Admin;

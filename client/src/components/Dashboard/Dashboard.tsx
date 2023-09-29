@@ -1,7 +1,5 @@
-import React from "react";
-
-function App() {
-  return <div>Dashboard</div>;
+function Dashboard() {
+  return <div className="app-panel">Dashboard</div>;
 }
 
-export default App;
+export default Dashboard;

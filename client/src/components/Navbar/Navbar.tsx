@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Menu, MenuProps } from "antd";
 import { DashboardOutlined, SettingOutlined } from "@ant-design/icons";
 import { Link, useLocation, Outlet } from "react-router-dom";
