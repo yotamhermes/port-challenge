@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal, Divider, Form } from "antd";
-import WidgetForm from "./WidgetForm";
+import WidgetFormContainer from "./WidgetForm/WidgetFormContainer";
 
 type Props = {
   open: boolean;
@@ -12,6 +12,9 @@ const WidgetSettings = ({ open, setOpen }: Props) => {
   const [submittable, setSubmittable] = useState(false);
   const [form] = Form.useForm();
   const title = Form.useWatch("title", form);
+  const widgetType = Form.useWatch("widgetType", form);
+  const eventSchema = Form.useWatch("eventSchema", form);
+  const eventSchemaField = Form.useWatch("eventSchemaField", form);
 
   useEffect(() => {
     form.validateFields({ validateOnly: true }).then(
@@ -22,15 +25,14 @@ const WidgetSettings = ({ open, setOpen }: Props) => {
         setSubmittable(false);
       }
     );
-  }, [title, form]);
+  }, [title, widgetType, eventSchema, eventSchemaField, form]);
 
   const handleOk = () => {
-    form.resetFields();
-
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
+      form.resetFields();
     }, 2000);
   };
 
@@ -50,7 +52,7 @@ const WidgetSettings = ({ open, setOpen }: Props) => {
       okButtonProps={{ htmlType: "submit", disabled: !submittable }}
     >
       <Divider />
-      {open && <WidgetForm form={form} />}
+      {open && <WidgetFormContainer form={form} />}
     </Modal>
   );
 };
