@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Modal, Divider, Form } from "antd";
-import WidgetFormContainer from "./WidgetForm/WidgetFormContainer";
+import WidgetFormContainer from "../WidgetForm/WidgetFormContainer";
+import { IWidget } from "../../../types/types";
 
 type Props = {
   open: boolean;
   setOpen: any;
+  onAddWidget: (widget: IWidget) => Promise<any>;
 };
 
-const WidgetSettings = ({ open, setOpen }: Props) => {
+const WidgetSettings = ({ open, setOpen, onAddWidget }: Props) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [submittable, setSubmittable] = useState(false);
   const [form] = Form.useForm();
@@ -29,11 +31,19 @@ const WidgetSettings = ({ open, setOpen }: Props) => {
 
   const handleOk = () => {
     setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
+    onAddWidget({
+      id: -1,
+      title,
+      type: widgetType,
+      position: {
+        x: 0,
+        y: 0,
+      },
+    }).then(() => {
       setConfirmLoading(false);
+      setOpen(false);
       form.resetFields();
-    }, 2000);
+    });
   };
 
   const handleCancel = () => {

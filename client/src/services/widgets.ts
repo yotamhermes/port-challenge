@@ -65,7 +65,8 @@ export const deleteWidget = (id: number) => {
 };
 
 export const addWidget = (widget: IWidget) => {
-  widgets.push(widget);
+  const id = Math.max(...widgets.map((x) => x.id)) + 1;
+  widgets.push({ ...widget, id });
 
   return new Promise((resolve) => {
     setTimeout(() => {

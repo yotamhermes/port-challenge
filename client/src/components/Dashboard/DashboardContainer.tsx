@@ -18,7 +18,13 @@ function DashboardContainer() {
     return deleteWidget(id).then(loadWidget);
   };
 
-  return <Dashboard widgets={widgets} onDeleteWidget={handleDelete} />;
+  return (
+    <Dashboard
+      widgets={widgets}
+      onDeleteWidget={handleDelete}
+      onAddWidget={loadWidget}
+    />
+  );
 }
 
 export default DashboardContainer;

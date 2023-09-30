@@ -10,7 +10,7 @@ import { FloatButton } from "antd";
 import { PlusOutlined, ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useState } from "react";
-import WidgetSettings from "../Widget/WidgetSettings";
+import WidgetSettingsContainer from "../Widget/WidgetSetting/WidgetSettingsContainer";
 
 const { confirm } = Modal;
 
@@ -19,6 +19,7 @@ const Layout = WidthProvider(GridLayout);
 type Props = {
   widgets: IWidget[];
   onDeleteWidget: (id: number) => void;
+  onAddWidget: () => void;
 };
 
 const confirmDelete = (callback: Function) => {
@@ -34,7 +35,7 @@ const confirmDelete = (callback: Function) => {
   });
 };
 
-function Dashboard({ widgets, onDeleteWidget }: Props) {
+function Dashboard({ widgets, onDeleteWidget, onAddWidget }: Props) {
   const containerClasses = classNames("app-panel", styles.container);
   const [open, setOpen] = useState(false);
 
@@ -72,7 +73,11 @@ function Dashboard({ widgets, onDeleteWidget }: Props) {
         icon={<PlusOutlined />}
         onClick={() => setOpen(true)}
       />
-      <WidgetSettings open={open} setOpen={setOpen} />
+      <WidgetSettingsContainer
+        open={open}
+        setOpen={setOpen}
+        onAddWidget={onAddWidget}
+      />
     </div>
   );
 }
