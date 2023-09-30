@@ -12,7 +12,8 @@ const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "80%",
+    height: "78%",
+    padding: 0
   };
   return (
     <Card
@@ -20,6 +21,9 @@ const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
       className={styles.card}
       ref={ref}
       title={title}
+      actions={[
+        <div>Hello</div>
+      ]}
       {...otherProps}
     >
       <div className={styles.childContainer}>{children}</div>

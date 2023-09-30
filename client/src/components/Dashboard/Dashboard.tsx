@@ -19,6 +19,8 @@ function Dashboard({ widgets }: Props) {
   return (
     <div className={containerClasses}>
       <Layout
+        // a hack to fix react-grid bug
+        resizeHandle={() => <></>}
         isResizable={false}
         className={styles.layout}
         cols={12}
@@ -28,8 +30,8 @@ function Dashboard({ widgets }: Props) {
           const position = {
             ...x.position,
             i: `${x.id}`,
-            w: x.size,
-            h: x.size,
+            w: 3,
+            h: 3,
           };
           return (
             <Widget key={x.id} data-grid={position} title={x.title}>
