@@ -23,4 +23,5 @@ code {
   flex-grow: 1;
   background-color: rgb(247 249 250);
   padding: 16px;
+  overflow: scroll;
 }
