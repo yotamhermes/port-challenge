@@ -5,17 +5,20 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import styles from "./styles.module.css";
 
 type Props = {
+  onDelete: () => void;
   title: string;
   children: ReactNode;
 };
 
-const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
+const Widget = (
+  { title, children, onDelete, ...otherProps }: Props,
+  ref: any
+) => {
   const bodyStyle = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "78%",
-    padding: 0,
   };
   return (
     <Card
@@ -23,7 +26,10 @@ const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
       className={styles.card}
       ref={ref}
       title={title}
-      actions={[<EditOutlined key="edit" />, <DeleteOutlined key="delete" />]}
+      actions={[
+        <EditOutlined key="edit" />,
+        <DeleteOutlined key="delete" onClick={onDelete} />,
+      ]}
       {...otherProps}
     >
       <div className={styles.childContainer}>{children}</div>

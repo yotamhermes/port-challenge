@@ -7,15 +7,30 @@ import { IWidget } from "../../types/types";
 import styles from "./dashboard.module.css";
 import { typeToChart } from "../../utils/typeToChart";
 import { FloatButton } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, ExclamationCircleFilled } from "@ant-design/icons";
+import { Modal } from "antd";
+
+const { confirm } = Modal;
 
 const Layout = WidthProvider(GridLayout);
 
 type Props = {
   widgets: IWidget[];
+  onDeleteWidget: (id: number) => void;
 };
 
-function Dashboard({ widgets }: Props) {
+const confirmDelete = (callback: Function) => {
+  confirm({
+    title: "Are you sure you want to delete these widget?",
+    icon: <ExclamationCircleFilled />,
+    content: "This will be permanently deleted",
+    onOk: () => {
+      return callback();
+    },
+  });
+};
+
+function Dashboard({ widgets, onDeleteWidget }: Props) {
   const containerClasses = classNames("app-panel", styles.container);
 
   return (
@@ -36,7 +51,12 @@ function Dashboard({ widgets }: Props) {
             h: 3,
           };
           return (
-            <Widget key={x.id} data-grid={position} title={x.title}>
+            <Widget
+              key={x.id}
+              data-grid={position}
+              title={x.title}
+              onDelete={() => confirmDelete(() => onDeleteWidget(x.id))}
+            >
               {typeToChart(x.type)}
             </Widget>
           );

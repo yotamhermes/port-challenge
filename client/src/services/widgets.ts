@@ -53,3 +53,13 @@ export const getWidgets = () => {
     resolve(widgets);
   });
 };
+
+export const deleteWidget = (id: number) => {
+  widgets = widgets.filter((x) => x.id !== id);
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(widgets);
+    }, 1000);
+  });
+};
