@@ -59,7 +59,17 @@ export const deleteWidget = (id: number) => {
 
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(widgets);
+      resolve("Done");
+    }, 1000);
+  });
+};
+
+export const addWidget = (widget: IWidget) => {
+  widgets.push(widget);
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Done");
     }, 1000);
   });
 };
