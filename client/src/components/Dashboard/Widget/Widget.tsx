@@ -1,5 +1,7 @@
 import { ReactNode, forwardRef } from "react";
 import { Card } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+
 import styles from "./styles.module.css";
 
 type Props = {
@@ -13,7 +15,7 @@ const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
     justifyContent: "center",
     alignItems: "center",
     height: "78%",
-    padding: 0
+    padding: 0,
   };
   return (
     <Card
@@ -21,9 +23,7 @@ const Widget = ({ title, children, ...otherProps }: Props, ref: any) => {
       className={styles.card}
       ref={ref}
       title={title}
-      actions={[
-        <div>Hello</div>
-      ]}
+      actions={[<EditOutlined key="edit" />, <DeleteOutlined key="delete" />]}
       {...otherProps}
     >
       <div className={styles.childContainer}>{children}</div>

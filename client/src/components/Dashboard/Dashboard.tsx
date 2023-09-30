@@ -6,6 +6,8 @@ import "react-resizable/css/styles.css";
 import { IWidget } from "../../types/types";
 import styles from "./dashboard.module.css";
 import { typeToChart } from "../../utils/typeToChart";
+import { FloatButton } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 const Layout = WidthProvider(GridLayout);
 
@@ -40,6 +42,11 @@ function Dashboard({ widgets }: Props) {
           );
         })}
       </Layout>
+      <FloatButton
+        type="primary"
+        icon={<PlusOutlined />}
+        onClick={() => console.log("click")}
+      />
     </div>
   );
 }
