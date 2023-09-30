@@ -21,7 +21,7 @@ code {
 
 .app-panel {
   flex-grow: 1;
-  background-color: rgb(247 249 250);
+  background-color: rgb(231, 231, 231);
   padding: 16px;
   overflow: scroll;
 }
