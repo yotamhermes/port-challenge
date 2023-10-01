@@ -1,12 +1,12 @@
 import express from "express";
 import {
   addNewEvent,
-  getEventsOfSchema,
+  countEventsOfSchema,
 } from "../controllers/eventsController";
 
 const router = express.Router();
 
-router.get("/:schemaId/events", getEventsOfSchema);
+router.get("/:schemaId/events", countEventsOfSchema);
 
 router.post("/:schemaId/events", addNewEvent);
 

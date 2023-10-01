@@ -2,36 +2,7 @@ import { IEventSchema } from "../types/types";
 import { service } from "./service";
 
 let eventSchemas: IEventSchema[] = [
-  {
-    id: "23",
-    name: "deployment-log",
-    fields: ["timestamp", "level"],
-  },
-  {
-    id: "24",
-    name: "sale",
-    fields: ["byWho", "month"],
-  },
-  {
-    id: "25",
-    name: "i-am-an",
-    fields: ["byWho", "month"],
-  },
-  {
-    id: "26",
-    name: "object-with-fields",
-    fields: ["byWho", "month"],
-  },
-  {
-    id: "27",
-    name: "why-not",
-    fields: ["byWho", "month"],
-  },
-  {
-    id: "28",
-    name: "uganda",
-    fields: ["byWho", "month"],
-  },
+
 ];
 
 export const getEventSchemas = () => {

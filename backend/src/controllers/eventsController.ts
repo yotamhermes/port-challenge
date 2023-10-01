@@ -4,18 +4,35 @@ import Event from "../models/eventModel";
 import { validateSchema } from "../utils/schemaUtils";
 import { SchemaValidationError } from "../utils/errorTyps";
 
-// Controller function to get a list of all eventSchemas
-export const getEventsOfSchema = async (req: Request, res: Response) => {
+// Controller function to get a list of all events
+export const countEventsOfSchema = async (req: Request, res: Response) => {
   try {
     const schemaId = req.params.schemaId;
+    const field = req.query.countBy;
+
+    if (!schemaId || !field) {
+      throw new Error("invalid params");
+    }
 
     const schema = await EventSchema.findOne({
       _id: schemaId,
     });
 
-    const events = await Event.find({ schemaId: schema?.id });
+    const countBy = await Event.aggregate([
+      {
+        $match: {
+          schemaId: schema?._id,
+        },
+      },
+      {
+        $group: {
+          _id: `$payload.${field}`,
+          count: { $sum: 1 },
+        },
+      },
+    ]);
 
-    res.status(200).json(events);
+    res.status(200).json(countBy);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

@@ -1,22 +1,12 @@
 import { IChartData } from "../types/types";
+import { service } from "./service";
 
 export const getEventsCountBy = (schema: string, field: string) => {
-  return new Promise<IChartData[]>((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          type: "info",
-          count: 30,
-        },
-        {
-          type: "warn",
-          count: 2,
-        },
-        {
-          type: "error",
-          count: 1,
-        },
-      ]);
-    }, 5000);
-  });
+  return service.get(`${schema}/events?countBy=${field}`).then(
+    (res) =>
+      (res.data as Array<any>).map((x) => ({
+        type: x._id,
+        count: x.count,
+      })) as IChartData[]
+  );
 };
