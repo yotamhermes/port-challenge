@@ -15,15 +15,18 @@ const WidgetContainer = (
   ref: any
 ) => {
   const [chartData, setChartData] = useState<IChartData[]>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     loadChartData();
   }, []);
 
   const loadChartData = () => {
-    return getEventsCountBy(widget.schema, widget.schemField).then((res) =>
-      setChartData(res)
-    );
+    setLoading(true);
+
+    getEventsCountBy(widget.schema, widget.schemField)
+      .then((res) => setChartData(res))
+      .then(() => setLoading(false));
   };
   const Component = typeToChart(widget.type);
 
@@ -35,7 +38,7 @@ const WidgetContainer = (
       onReload={loadChartData}
       {...otherProps}
     >
-      <Component data={chartData} />
+      <Component data={chartData} loading={loading} />
     </Widget>
   );
 };

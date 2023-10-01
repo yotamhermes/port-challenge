@@ -23,6 +23,7 @@ export type IChartData = {
 
 export type ChartProps = {
   data?: IChartData[];
+  loading: boolean;
 };
 
 export type ChartComponent<ChartProps> = React.FC<ChartProps>;

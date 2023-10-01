@@ -17,6 +17,6 @@ export const getEventsCountBy = (schema: string, field: string) => {
           count: 1,
         },
       ]);
-    }, 1000);
+    }, 5000);
   });
 };
