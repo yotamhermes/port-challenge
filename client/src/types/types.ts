@@ -2,8 +2,8 @@ export type IWidget = {
   id?: number;
   title: string;
   type: string;
-  schema: string;
-  schemField: string;
+  schemaId: string;
+  schemaField: string;
   position: {
     x: number;
     y: number;

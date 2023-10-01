@@ -32,8 +32,8 @@ const WidgetSettings = ({ open, setOpen, onAddWidget }: Props) => {
   const handleOk = () => {
     setConfirmLoading(true);
     onAddWidget({
-      schema: eventSchema,
-      schemField: eventSchemaField,
+      schemaId: eventSchema,
+      schemaField: eventSchemaField,
       title,
       type: widgetType,
       position: {

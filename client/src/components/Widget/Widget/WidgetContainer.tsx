@@ -24,7 +24,7 @@ const WidgetContainer = (
   const loadChartData = () => {
     setLoading(true);
 
-    getEventsCountBy(widget.schema, widget.schemField)
+    getEventsCountBy(widget.schemaId, widget.schemaField)
       .then((res) => setChartData(res))
       .then(() => setLoading(false));
   };
