@@ -32,7 +32,6 @@ const WidgetSettings = ({ open, setOpen, onAddWidget }: Props) => {
   const handleOk = () => {
     setConfirmLoading(true);
     onAddWidget({
-      id: -1,
       title,
       type: widgetType,
       position: {

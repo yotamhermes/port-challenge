@@ -1,5 +1,5 @@
 export type IWidget = {
-  id: number;
+  id?: number;
   title: string;
   type: string;
   position: {

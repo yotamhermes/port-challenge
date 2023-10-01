@@ -14,7 +14,7 @@ function DashboardContainer() {
     getWidgets().then((widgets) => setWidgets(widgets as IWidget[]));
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id?: number) => {
     return deleteWidget(id).then(loadWidget);
   };
 

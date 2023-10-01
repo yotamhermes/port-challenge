@@ -1,6 +1,6 @@
 import { ReactNode, forwardRef } from "react";
 import { Card } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { ReloadOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import styles from "./styles.module.css";
 
@@ -27,7 +27,7 @@ const Widget = (
       ref={ref}
       title={title}
       actions={[
-        <EditOutlined key="edit" />,
+        <ReloadOutlined key="reload" />,
         <DeleteOutlined key="delete" onClick={onDelete} />,
       ]}
       {...otherProps}

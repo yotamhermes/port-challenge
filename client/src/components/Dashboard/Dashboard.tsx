@@ -18,7 +18,7 @@ const Layout = WidthProvider(GridLayout);
 
 type Props = {
   widgets: IWidget[];
-  onDeleteWidget: (id: number) => void;
+  onDeleteWidget: (id?: number) => void;
   onAddWidget: () => void;
 };
 
