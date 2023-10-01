@@ -5,6 +5,8 @@ let widgets: IWidget[] = [
     id: 23,
     title: "Incomes By month",
     type: "bar",
+    schema: "deploymentlog",
+    schemField: "timestamp",
     position: {
       x: 0,
       y: 0,
@@ -14,6 +16,8 @@ let widgets: IWidget[] = [
     id: 47,
     title: "Revenew",
     type: "pie",
+    schema: "deploymentlog",
+    schemField: "timestamp",
     position: {
       x: 3,
       y: 0,
@@ -22,6 +26,8 @@ let widgets: IWidget[] = [
   {
     id: 12,
     title: "Logs By type",
+    schema: "deploymentlog",
+    schemField: "timestamp",
     type: "bar",
     position: {
       x: 6,
@@ -31,6 +37,8 @@ let widgets: IWidget[] = [
   {
     id: 15,
     type: "bar",
+    schema: "deploymentlog",
+    schemField: "timestamp",
     title: "Mixpanel",
     position: {
       x: 9,
@@ -40,6 +48,8 @@ let widgets: IWidget[] = [
   {
     id: 19,
     title: "Sales By Week",
+    schema: "deploymentlog",
+    schemField: "timestamp",
     type: "pie",
     position: {
       x: 0,

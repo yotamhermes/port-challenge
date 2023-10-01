@@ -1,23 +1,20 @@
 import { VictoryBar, VictoryChart, VictoryTheme } from "victory";
+import { ChartComponent, ChartProps } from "../../types/types";
 
-const data = [
-  { quarter: 1, earnings: 13000 },
-  { quarter: 2, earnings: 16500 },
-  { quarter: 3, earnings: 14250 },
-  { quarter: 4, earnings: 19000 },
-];
+const BarChart: ChartComponent<ChartProps> = ({ data = [] }: ChartProps) => {
+  const categories = { x: data.map((c) => c.type) };
 
-function BarChart() {
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
       <VictoryBar
         style={{ data: { fill: "#415CF2" } }}
+        categories={categories}
         data={data}
-        x="quarter"
-        y="earnings"
+        x="type"
+        y="count"
       />
     </VictoryChart>
   );
-}
+};
 
 export default BarChart;

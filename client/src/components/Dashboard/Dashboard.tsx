@@ -1,16 +1,15 @@
 import classNames from "classnames";
 import GridLayout, { WidthProvider } from "react-grid-layout";
-import Widget from "../Widget/Widget";
+import WidgetContainer from "../Widget/Widget/WidgetContainer";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { IWidget } from "../../types/types";
-import styles from "./dashboard.module.css";
-import { typeToChart } from "../../utils/chartTypes";
 import { FloatButton } from "antd";
 import { PlusOutlined, ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useState } from "react";
 import WidgetSettingsContainer from "../Widget/WidgetSetting/WidgetSettingsContainer";
+import styles from "./dashboard.module.css";
 
 const { confirm } = Modal;
 
@@ -57,14 +56,13 @@ function Dashboard({ widgets, onDeleteWidget, onAddWidget }: Props) {
             h: 3,
           };
           return (
-            <Widget
+            <WidgetContainer
               key={x.id}
               data-grid={position}
-              title={x.title}
+              widget={x}
               onDelete={() => confirmDelete(() => onDeleteWidget(x.id))}
             >
-              {typeToChart(x.type)}
-            </Widget>
+            </WidgetContainer>
           );
         })}
       </Layout>

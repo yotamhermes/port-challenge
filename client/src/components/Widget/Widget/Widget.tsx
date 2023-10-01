@@ -8,10 +8,11 @@ type Props = {
   onDelete: () => void;
   title: string;
   children: ReactNode;
+  onReload: () => void;
 };
 
 const Widget = (
-  { title, children, onDelete, ...otherProps }: Props,
+  { title, children, onDelete, onReload, ...otherProps }: Props,
   ref: any
 ) => {
   const bodyStyle = {
@@ -27,7 +28,7 @@ const Widget = (
       ref={ref}
       title={title}
       actions={[
-        <ReloadOutlined key="reload" />,
+        <ReloadOutlined key="reload" onClick={onReload}/>,
         <DeleteOutlined key="delete" onClick={onDelete} />,
       ]}
       {...otherProps}
