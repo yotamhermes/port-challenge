@@ -11,7 +11,7 @@ export type IWidget = {
 };
 
 export type IEventSchema = {
-  id: number;
+  id: string;
   name: string;
   fields: string[];
 };

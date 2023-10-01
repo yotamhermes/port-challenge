@@ -4,7 +4,9 @@ import db from "../database";
 // Define the EventSchema schema
 export interface IEventSchema extends Document {
   name: string;
-  structure: object;
+  structure: {
+    properties: object
+  };
 }
 
 // Create a mongoose schema for the Event model

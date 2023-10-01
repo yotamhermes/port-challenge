@@ -1,45 +1,46 @@
 import { IEventSchema } from "../types/types";
+import { service } from "./service";
 
 let eventSchemas: IEventSchema[] = [
   {
-    id: 23,
+    id: "23",
     name: "deployment-log",
     fields: ["timestamp", "level"],
   },
   {
-    id: 24,
+    id: "24",
     name: "sale",
     fields: ["byWho", "month"],
   },
   {
-    id: 25,
+    id: "25",
     name: "i-am-an",
     fields: ["byWho", "month"],
   },
   {
-    id: 26,
+    id: "26",
     name: "object-with-fields",
     fields: ["byWho", "month"],
   },
   {
-    id: 27,
+    id: "27",
     name: "why-not",
     fields: ["byWho", "month"],
   },
   {
-    id: 28,
+    id: "28",
     name: "uganda",
     fields: ["byWho", "month"],
   },
 ];
 
 export const getEventSchemas = () => {
-  return new Promise((resolve) => {
-    resolve(eventSchemas);
+  return service.get("/event-schemas").then((res) => {
+    return res.data as IEventSchema[];
   });
 };
 
-export const deleteEventSchemas = (id: number) => {
+export const deleteEventSchemas = (id: string) => {
   eventSchemas = eventSchemas.filter((x) => x.id !== id);
 
   return new Promise((resolve) => {

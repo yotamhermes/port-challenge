@@ -8,7 +8,12 @@ import { SchemaValidationError } from "../utils/errorTyps";
 export const getAllEventsSchemas = async (req: Request, res: Response) => {
   try {
     const eventSchemas = await EventSchema.find();
-    res.status(200).json(eventSchemas);
+    const result = eventSchemas.map((x) => ({
+      id: x._id,
+      name: x.name,
+      fields: Object.keys(x.structure.properties),
+    }));
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
