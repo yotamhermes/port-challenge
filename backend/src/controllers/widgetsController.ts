@@ -44,3 +44,11 @@ export const addNewWidget = async (req: Request, res: Response) => {
     res.status(status).json({ error: message });
   }
 };
+
+export const deleteWidget = async (req: Request, res: Response) => {
+  const widgetId = req.params.widgetId;
+
+  await Widget.deleteOne({ _id: widgetId });
+
+  res.status(200).json("deleted");
+};

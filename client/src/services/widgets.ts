@@ -22,24 +22,9 @@ export const getWidgets = () => {
 };
 
 export const deleteWidget = (id?: number) => {
-  widgets = widgets.filter((x) => x.id !== id);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Done");
-    }, 1000);
-  });
+  return service.delete(`/widgets/${id}`);
 };
 
 export const addWidget = (widget: IWidget) => {
   return service.post("/widgets", widget).then((x) => x.data);
-
-  // const id = Math.max(0, ...widgets.map((x) => x.id || 0)) + 1;
-  // widgets.push({ ...widget, id });
-
-  // return new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve("Done");
-  //   }, 1000);
-  // });
 };
