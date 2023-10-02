@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { validateSchema } from "../utils/schemaUtils";
 import { SchemaValidationError } from "../utils/errorTyps";
 import Widget from "../models/widgetModel";
+import EventSchema from "../models/eventSchemaModel";
 
 // Controller function to get a list of all events
 export const getWidgets = async (req: Request, res: Response) => {
@@ -15,40 +15,32 @@ export const getWidgets = async (req: Request, res: Response) => {
   }
 };
 
-export const addNewEvent = async (req: Request, res: Response) => {
-//   try {
-//     const schemaId = req.params.schemaId;
-//     const payload = req.body;
+export const addNewWidget = async (req: Request, res: Response) => {
+  try {
+    const widget = req.body;
+    const schema = await EventSchema.findOne({
+      _id: widget.schemaId,
+    });
 
-//     const schema = await EventSchema.findOne({
-//       _id: schemaId,
-//     });
+    const newWidget = new Widget({
+      title: widget.title,
+      type: widget.type,
+      schemaId: schema?._id,
+      schemaField: widget.schemaField,
+      position: {
+        x: widget.position?.x,
+        y: widget.position?.y,
+      },
+    });
 
-//     const validationResult = validateSchema(schema?.structure || {}, payload);
+    // Save it to the database
+    const result = await newWidget.save();
 
-//     if (!validationResult.valid) {
-//       throw new SchemaValidationError(validationResult.error || "");
-//     }
+    res.status(200).json(result?._id);
+  } catch (error) {
+    let status = 500;
+    let message = "Internal Server Error";
 
-//     const newEvent = new Event({
-//       schemaId: schema?._id,
-//       payload,
-//     });
-
-//     // Save it to the database
-//     const result = await newEvent.save();
-
-//     res.status(200).json(result?._id);
-//   } catch (error) {
-//     let status = 500;
-//     let message = "Internal Server Error";
-
-//     // Schema Structure Invalid
-//     if (error instanceof SchemaValidationError) {
-//       status = 400;
-//       message = `Event Schema Not Valid: ${error.message}`;
-//     }
-
-//     res.status(status).json({ error: message });
-//   }
+    res.status(status).json({ error: message });
+  }
 };

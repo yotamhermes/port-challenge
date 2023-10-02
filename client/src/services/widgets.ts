@@ -32,12 +32,14 @@ export const deleteWidget = (id?: number) => {
 };
 
 export const addWidget = (widget: IWidget) => {
-  const id = Math.max(0, ...widgets.map((x) => x.id || 0)) + 1;
-  widgets.push({ ...widget, id });
+  return service.post("/widgets", widget).then((x) => x.data);
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Done");
-    }, 1000);
-  });
+  // const id = Math.max(0, ...widgets.map((x) => x.id || 0)) + 1;
+  // widgets.push({ ...widget, id });
+
+  // return new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve("Done");
+  //   }, 1000);
+  // });
 };
