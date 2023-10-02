@@ -8,7 +8,7 @@ const allowdTypes = ["string", "number", "boolean"];
 
 const fieldsRenderer = (fields: any, { add, remove }: any, { errors }: any) => (
   <Form.Item label="Fields" required={true}>
-    {fields.map((key: any, name: any, ...restField: any) => (
+    {fields.map((key: any, name: any) => (
       <div
         style={{
           display: "flex",
@@ -37,7 +37,7 @@ const fieldsRenderer = (fields: any, { add, remove }: any, { errors }: any) => (
                   {x}
                 </Option>
               ))}
-            </Select>{" "}
+            </Select>
           </Form.Item>
           {fields.length > 1 ? (
             <MinusCircleOutlined
