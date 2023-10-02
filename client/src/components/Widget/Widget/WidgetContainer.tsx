@@ -6,12 +6,11 @@ import { getEventsCountBy } from "../../../services/event";
 
 type Props = {
   onDelete: () => void;
-  children: ReactNode;
   widget: IWidget;
 };
 
 const WidgetContainer = (
-  { widget, children, onDelete, ...otherProps }: Props,
+  { widget, onDelete, ...otherProps }: Props,
   ref: any
 ) => {
   const [chartData, setChartData] = useState<IChartData[]>();

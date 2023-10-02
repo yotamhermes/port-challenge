@@ -15,3 +15,13 @@ export const deleteWidget = (id?: number) => {
 export const addWidget = (widget: IWidget) => {
   return service.post("/widgets", widget).then((x) => x.data);
 };
+
+type Layout = {
+  id: string;
+  x: number;
+  y: number;
+};
+
+export const updateLayout = (layout: Layout[]) => {
+  service.put("/widgets/layout", layout);
+};

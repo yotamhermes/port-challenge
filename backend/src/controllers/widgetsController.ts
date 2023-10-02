@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { SchemaValidationError } from "../utils/errorTyps";
 import Widget from "../models/widgetModel";
 import EventSchema from "../models/eventSchemaModel";
 
@@ -51,4 +50,17 @@ export const deleteWidget = async (req: Request, res: Response) => {
   await Widget.deleteOne({ _id: widgetId });
 
   res.status(200).json("deleted");
+};
+
+export const updateLayout = async (req: Request, res: Response) => {
+  const layout = req.body;
+
+  layout.forEach(async (item: any) => {
+    await Widget.updateOne(
+      { _id: item.id },
+      { position: { x: item.x, y: item.y } }
+    );
+  });
+
+  res.status(200).json("updated");
 };

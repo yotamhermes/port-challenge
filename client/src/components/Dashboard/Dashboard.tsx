@@ -19,6 +19,7 @@ type Props = {
   widgets: IWidget[];
   onDeleteWidget: (id?: number) => void;
   onAddWidget: () => void;
+  onLayoutChange: (layout: any) => void;
 };
 
 const confirmDelete = (callback: Function) => {
@@ -34,7 +35,12 @@ const confirmDelete = (callback: Function) => {
   });
 };
 
-function Dashboard({ widgets, onDeleteWidget, onAddWidget }: Props) {
+function Dashboard({
+  widgets,
+  onDeleteWidget,
+  onAddWidget,
+  onLayoutChange,
+}: Props) {
   const containerClasses = classNames("app-panel", styles.container);
   const [open, setOpen] = useState(false);
 
@@ -46,7 +52,7 @@ function Dashboard({ widgets, onDeleteWidget, onAddWidget }: Props) {
         isResizable={false}
         className={styles.layout}
         cols={12}
-        onLayoutChange={() => {}}
+        onLayoutChange={onLayoutChange}
       >
         {widgets.map((x) => {
           const position = {
@@ -61,8 +67,7 @@ function Dashboard({ widgets, onDeleteWidget, onAddWidget }: Props) {
               data-grid={position}
               widget={x}
               onDelete={() => confirmDelete(() => onDeleteWidget(x.id))}
-            >
-            </WidgetContainer>
+            ></WidgetContainer>
           );
         })}
       </Layout>

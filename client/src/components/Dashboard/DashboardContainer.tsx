@@ -1,4 +1,4 @@
-import { getWidgets, deleteWidget } from "../../services/widgets";
+import { getWidgets, deleteWidget, updateLayout } from "../../services/widgets";
 import { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import { IWidget } from "../../types/types";
@@ -18,11 +18,21 @@ function DashboardContainer() {
     return deleteWidget(id).then(loadWidget);
   };
 
+  const handleChangeLayout = (layout: any) => {
+    const parsed = layout.map((w: any) => ({
+      id: w.i,
+      x: w.x,
+      y: w.y,
+    }));
+    updateLayout(parsed);
+  };
+
   return (
     <Dashboard
       widgets={widgets}
       onDeleteWidget={handleDelete}
       onAddWidget={loadWidget}
+      onLayoutChange={handleChangeLayout}
     />
   );
 }
