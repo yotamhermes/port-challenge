@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { IChartData, IWidget } from "../../../types/types";
 import { typeToChart } from "../../../utils/chartTypes";
 import Widget from "./Widget";
@@ -27,6 +27,7 @@ const WidgetContainer = (
       .then((res) => setChartData(res))
       .then(() => setLoading(false));
   };
+  
   const Component = typeToChart(widget.type);
 
   return (

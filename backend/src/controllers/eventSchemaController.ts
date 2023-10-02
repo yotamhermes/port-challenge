@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import EventSchema from "../models/eventSchemaModel"; // Import your Event model or schema definition here
+import EventSchema from "../models/eventSchemaModel";
+import Event from "../models/eventModel";
 import { MongoServerError } from "mongodb";
 import { validateSchemaStructure } from "../utils/schemaUtils";
 import { SchemaValidationError } from "../utils/errorTyps";
@@ -58,4 +59,15 @@ export const addNewEventSchema = async (req: Request, res: Response) => {
 
     res.status(status).json({ error: message });
   }
+};
+
+export const deleteEventSchema = async (req: Request, res: Response) => {
+  const schemaId = req.params.schemaId;
+  const schema = await EventSchema.findOne({ _id: schemaId });
+
+  await Event.deleteMany({ schemaId: schema?._id });
+
+  await EventSchema.deleteOne({ _id: schemaId });
+
+  res.status(200).json("deleted");
 };

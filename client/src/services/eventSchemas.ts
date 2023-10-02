@@ -1,9 +1,7 @@
 import { IEventSchema } from "../types/types";
 import { service } from "./service";
 
-let eventSchemas: IEventSchema[] = [
-
-];
+let eventSchemas: IEventSchema[] = [];
 
 export const getEventSchemas = () => {
   return service.get("/event-schemas").then((res) => {
@@ -12,13 +10,7 @@ export const getEventSchemas = () => {
 };
 
 export const deleteEventSchemas = (id: string) => {
-  eventSchemas = eventSchemas.filter((x) => x.id !== id);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("Done");
-    }, 1000);
-  });
+  return service.delete(`/event-schemas/${id}`);
 };
 
 export const addEventSchema = (widget: IEventSchema) => {

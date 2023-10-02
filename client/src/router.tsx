@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import DashboardContainer from "./components/Dashboard/DashboardContainer";
-import AdminContainer from "./components/Admin/Admin/AdminContainer";
+import SchemasContainer from "./components/Admin/Schemas/SchemasContainer";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       },
       {
         path: "admin",
-        element: <AdminContainer />,
+        element: <SchemasContainer />,
       },
     ],
   },
