@@ -1,18 +1,5 @@
 import { IWidget } from "../types/types";
 import { service } from "./service";
-let widgets: IWidget[] = [
-  // {
-  //   id: 23,
-  //   title: "Incomes By month",
-  //   type: "bar",
-  //   schema: "deploymentlog",
-  //   schemField: "timestamp",
-  //   position: {
-  //     x: 0,
-  //     y: 0,
-  //   },
-  // },
-];
 
 export const getWidgets = () => {
   return service
