@@ -51,13 +51,8 @@ function Admin({ schemas, onDeleteSchema, onAddedSchema }: Props) {
             actions={[
               <Tooltip title="Delete Schema">
                 <Button
-                  icon={
-                    <DeleteOutlined
-                      onClick={() =>
-                        confirmDelete(() => onDeleteSchema(item.id))
-                      }
-                    />
-                  }
+                  onClick={() => confirmDelete(() => onDeleteSchema(item.id))}
+                  icon={<DeleteOutlined />}
                 />
               </Tooltip>,
               <Tooltip title="Add Schema Event">
