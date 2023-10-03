@@ -22,7 +22,13 @@ function SchemasContainer() {
   const handleDeleteSchema = (id: string) => {
     deleteEventSchemas(id).then(loadSchemas);
   };
-  return <Schemas schemas={schemas} onDeleteSchema={handleDeleteSchema} />;
+  return (
+    <Schemas
+      schemas={schemas}
+      onDeleteSchema={handleDeleteSchema}
+      onAddedSchema={loadSchemas}
+    />
+  );
 }
 
 export default SchemasContainer;

@@ -21,10 +21,24 @@ export const getAllEventsSchemas = async (req: Request, res: Response) => {
   }
 };
 
+type EventSchemaField = {
+  fieldName: string;
+  fieldType: string;
+};
+
 export const addNewEventSchema = async (req: Request, res: Response) => {
   try {
     const name: string = req.body?.name;
-    const structure: object = req.body?.structure;
+    const fields: EventSchemaField[] = req.body?.fields;
+    const acc: { [key: string]: any } = {};
+
+    const structure = {
+      type: "object",
+      properties: fields.reduce((acc, item) => {
+        acc[item.fieldName] = { type: item.fieldType };
+        return acc;
+      }, acc),
+    };
 
     const validationResult = validateSchemaStructure(structure);
 

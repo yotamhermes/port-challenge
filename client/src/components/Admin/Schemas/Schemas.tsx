@@ -14,6 +14,7 @@ const { confirm } = Modal;
 type Props = {
   schemas: IEventSchema[];
   onDeleteSchema: (id: string) => void;
+  onAddedSchema: () => void;
 };
 
 const confirmDelete = (callback: Function) => {
@@ -30,11 +31,11 @@ const confirmDelete = (callback: Function) => {
   });
 };
 
-function Admin({ schemas, onDeleteSchema }: Props) {
+function Admin({ schemas, onDeleteSchema, onAddedSchema }: Props) {
   const header = (
     <div className={styles.header}>
       <h2>Schemas</h2>
-      <AddSchemaButton className={styles.addButton} />
+      <AddSchemaButton onSubmit={onAddedSchema} className={styles.addButton} />
     </div>
   );
   return (

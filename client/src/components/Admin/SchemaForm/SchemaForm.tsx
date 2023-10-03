@@ -1,5 +1,6 @@
 import { Input, Form, Button, Space, Select } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import type { FormInstance } from "antd/es/form";
 import styles from "./schemaForm.module.css";
 
 const { Option } = Select;
@@ -62,9 +63,13 @@ const fieldsRenderer = (fields: any, { add, remove }: any, { errors }: any) => (
   </Form.Item>
 );
 
-const SchemaForm = () => {
+type SchemaFormProps = {
+  form: FormInstance;
+};
+
+const SchemaForm = ({ form }: SchemaFormProps) => {
   return (
-    <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
+    <Form form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
       <Form.Item<string>
         label="Name"
         name="name"

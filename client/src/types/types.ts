@@ -16,6 +16,16 @@ export type IEventSchema = {
   fields: string[];
 };
 
+export type IEventSchemaField = {
+  name: string;
+  type: string;
+};
+
+export type INewEventSchema = {
+  name: string;
+  fields: IEventSchemaField[];
+};
+
 export type IChartData = {
   type: string;
   count: number;
