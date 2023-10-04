@@ -13,6 +13,8 @@ function AddEventSchemaButtonContainer({ schemaId }: Props) {
 
   useEffect(() => {
     loadFields();
+
+    // eslint-disable-next-line
   }, []);
 
   const loadFields = () => {

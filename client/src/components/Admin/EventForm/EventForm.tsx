@@ -64,7 +64,7 @@ const EventForm = ({ form, fields, onChange }: Props) => {
   return (
     <Form
       form={form}
-      labelCol={{ span: 4 }}
+      labelCol={{ span: 8 }}
       wrapperCol={{ span: 20 }}
       initialValues={initialValues}
     >
