@@ -1,8 +1,7 @@
 import { VictoryPie } from "victory";
 import { ChartComponent, ChartProps } from "../../types/types";
 import { LoadingOutlined } from "@ant-design/icons";
-import styles from './charts.module.css'
-
+import styles from "./charts.module.css";
 
 const colorScale = ["#F27127", "#415CF2", "#2E97F2", "#48D9CA", "#F27127"];
 

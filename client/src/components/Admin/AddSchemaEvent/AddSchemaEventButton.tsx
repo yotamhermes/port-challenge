@@ -21,7 +21,7 @@ function AddEventSchemaButton({ fields, onAddTestEvent }: Props) {
 
   const handleChanged = async () => {
     try {
-      await form.validateFields();
+      await form.validateFields({ validateOnly: true });
       setSubmittable(true);
     } catch (errorInfo) {
       setSubmittable(false);

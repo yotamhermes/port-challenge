@@ -7,7 +7,7 @@ const BarChart: ChartComponent<ChartProps> = ({
   data = [],
   loading,
 }: ChartProps) => {
-  const categories = { x: data.map((c) => c.type) };
+  const categories = data ? { x: data.map((c) => c.type) } : { x: [] };
 
   return loading ? (
     <LoadingOutlined className={styles.loading} />
@@ -15,6 +15,7 @@ const BarChart: ChartComponent<ChartProps> = ({
     <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
       <VictoryBar
         style={{ data: { fill: "#415CF2" } }}
+        barWidth={40}
         categories={categories}
         data={data}
         x="type"

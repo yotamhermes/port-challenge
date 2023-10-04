@@ -23,17 +23,13 @@ const WidgetForm = ({
   eventSchemaFields,
   onChange,
 }: WidgetFormProps) => {
-  const initialValues = {
-    widgetType: widgetTypes ? widgetTypes[0]?.id : undefined,
-    eventSchema: eventSchemas ? eventSchemas[0]?.id : undefined,
-  };
 
   const eventSchemaFieldsDisable = !(
     form.getFieldValue("eventSchema") && eventSchemaFields
   );
 
   return (
-    <Form form={form} initialValues={initialValues} onValuesChange={onChange}>
+    <Form form={form} onValuesChange={onChange}>
       <Form.Item<string>
         label="Title"
         name="title"

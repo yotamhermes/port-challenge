@@ -11,6 +11,7 @@ const fieldsRenderer = (fields: any, { add, remove }: any, { errors }: any) => (
   <Form.Item label="Fields" required={true}>
     {fields.map((key: any, name: any) => (
       <div
+        key={key.fieldKey}
         style={{
           display: "flex",
           flexDirection: "column",
