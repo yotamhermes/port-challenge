@@ -1,11 +1,14 @@
 # Port Dashboard
 
-Welcome to the Port Dashboard project! 
+Welcome to the Port Dashboard project!
 In order to run the project successfully, please follow the steps below.
 
+# Screenshots
 
+<img src="demo.gif" width="800" />
 # Architecture
-![Your Diagram](diagram.png)
+
+<img src="diagram.png" width="800" />
 
 ## Prerequisites
 
@@ -63,6 +66,7 @@ Once you have MongoDB installed and the `.env` files configured, you can run the
    ```bash
    npm install
    ```
+
 4. Run the following command to start the backend server:
 
    ```bash
@@ -76,6 +80,7 @@ Once you have MongoDB installed and the `.env` files configured, you can run the
    ```bash
    npm install
    ```
+
 8. Run the following command to start the frontend client:
 
    ```bash
