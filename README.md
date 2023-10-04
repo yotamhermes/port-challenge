@@ -3,6 +3,10 @@
 Welcome to the Port Dashboard project! 
 In order to run the project successfully, please follow the steps below.
 
+
+# Architecture
+![Your Diagram](diagram.png)
+
 ## Prerequisites
 
 Before you can run the Port Dashboard project, you need to ensure that you have MongoDB and Node JS installed locally on your machine.
