@@ -6,6 +6,7 @@ In order to run the project successfully, please follow the steps below.
 # Screenshots
 
 <img src="demo.gif" width="800" />
+
 # Architecture
 
 <img src="diagram.png" width="800" />
