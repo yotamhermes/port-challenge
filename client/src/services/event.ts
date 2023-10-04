@@ -10,3 +10,7 @@ export const getEventsCountBy = (schema: string, field: string) => {
       })) as IChartData[]
   );
 };
+
+export const addEvent = (schemaId: string, event: object) => {
+  return service.post(`/${schemaId}/events`, event);
+};

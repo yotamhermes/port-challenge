@@ -1,4 +1,4 @@
-import { IEventSchema, INewEventSchema } from "../types/types";
+import { IEventSchema, INewEventSchema, IEventSchemaField } from "../types/types";
 import { service } from "./service";
 
 export const getEventSchemas = () => {
@@ -13,4 +13,10 @@ export const deleteEventSchemas = (id: string) => {
 
 export const addEventSchema = (eventSchema: INewEventSchema) => {
   return service.post("/event-schemas", eventSchema);
+};
+
+export const getSchemaFields = (schemaId: string) => {
+  return service.get(`event-schemas/${schemaId}/fields`).then((res) => {
+    return res.data as IEventSchemaField[];
+  });
 };

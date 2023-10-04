@@ -5,6 +5,11 @@ import { MongoServerError } from "mongodb";
 import { validateSchemaStructure } from "../utils/schemaUtils";
 import { SchemaValidationError } from "../utils/errorTyps";
 
+type EventSchemaField = {
+  fieldName: string;
+  fieldType: string;
+};
+
 // Controller function to get a list of all eventSchemas
 export const getAllEventsSchemas = async (req: Request, res: Response) => {
   try {
@@ -19,11 +24,6 @@ export const getAllEventsSchemas = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-};
-
-type EventSchemaField = {
-  fieldName: string;
-  fieldType: string;
 };
 
 export const addNewEventSchema = async (req: Request, res: Response) => {
@@ -84,4 +84,35 @@ export const deleteEventSchema = async (req: Request, res: Response) => {
   await EventSchema.deleteOne({ _id: schemaId });
 
   res.status(200).json("deleted");
+};
+
+export const getSchemaFields = async (req: Request, res: Response) => {
+  try {
+    const schemaId = req.params.schemaId;
+
+    const schema = await EventSchema.findOne({
+      _id: schemaId,
+    });
+
+    const acc: EventSchemaField[] = [];
+
+    const result = Object.entries(schema?.structure?.properties || {}).reduce(
+      (acc, item) => {
+        acc.push({
+          fieldName: item[0],
+          fieldType: item[1]["type"],
+        });
+
+        return acc;
+      },
+      acc
+    );
+
+    res.status(200).json(result);
+  } catch (error) {
+    let status = 500;
+    let message = "Internal Server Error";
+
+    res.status(status).json({ error: message });
+  }
 };

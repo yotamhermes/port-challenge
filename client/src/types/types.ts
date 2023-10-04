@@ -17,8 +17,8 @@ export type IEventSchema = {
 };
 
 export type IEventSchemaField = {
-  name: string;
-  type: string;
+  fieldName: string;
+  fieldType: string;
 };
 
 export type INewEventSchema = {

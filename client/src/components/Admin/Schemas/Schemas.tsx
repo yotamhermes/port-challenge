@@ -1,10 +1,7 @@
 import { List, Tooltip, Button } from "antd";
 import AddSchemaButton from "../AddSchema/AddSchemaButton";
-import {
-  DeleteOutlined,
-  PlusOutlined,
-  ExclamationCircleFilled,
-} from "@ant-design/icons";
+import AddSchemaEventButtonContainer from "../AddSchemaEvent/AddSchemaEventButtonContainer";
+import { DeleteOutlined, ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
 import styles from "./schemas.module.css";
 import { IEventSchema } from "../../../types/types";
@@ -55,9 +52,7 @@ function Admin({ schemas, onDeleteSchema, onAddedSchema }: Props) {
                   icon={<DeleteOutlined />}
                 />
               </Tooltip>,
-              <Tooltip title="Add Schema Event">
-                <Button icon={<PlusOutlined />} />
-              </Tooltip>,
+              <AddSchemaEventButtonContainer schemaId={item.id} />,
             ]}
           >
             <List.Item.Meta
